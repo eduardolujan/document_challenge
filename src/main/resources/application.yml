@@ -1,8 +1,6 @@
 server:
   port: 8080
 
-
-
 spring:
   servlet:
     multipart:
@@ -12,7 +10,7 @@ spring:
 
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/challenge
+    url: jdbc:postgresql://postgresql:5432/challenge
     username: postgres
     password: password
     driver-class-name: org.postgresql.Driver
@@ -27,7 +25,7 @@ spring:
 
 
 minio:
-    endpoint: http://localhost:9000
+    endpoint: http://minio:9000
     access-key: minio_user
     secret-key: minio_pass
     bucket-name: challenge

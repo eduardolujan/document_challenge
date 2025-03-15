@@ -1,5 +1,3 @@
 package com.clara.ops.challenge.documents.domain.entity;
 
-public interface Entity {
-
-}
+public interface Entity {}

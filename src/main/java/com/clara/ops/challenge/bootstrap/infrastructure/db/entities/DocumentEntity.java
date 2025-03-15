@@ -1,6 +1,6 @@
 package com.clara.ops.challenge.bootstrap.infrastructure.db.entities;
 
-
+import com.clara.ops.challenge.bootstrap.domain.db.DatabaseEntity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,9 +19,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-// Domain
-import com.clara.ops.challenge.bootstrap.domain.db.DatabaseEntity;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,8 +26,7 @@ import com.clara.ops.challenge.bootstrap.domain.db.DatabaseEntity;
 @Table(name = "documents")
 @Builder(toBuilder = true)
 public class DocumentEntity implements DatabaseEntity {
-  @Id
-  private UUID id;
+  @Id private UUID id;
 
   @Column(name = "\"user\"")
   private String user;
@@ -48,12 +44,12 @@ public class DocumentEntity implements DatabaseEntity {
   private OffsetDateTime updatedAt;
 
   @PrePersist
-  private void prePersist(){
+  private void prePersist() {
     setCreatedAt(OffsetDateTime.ofInstant(Instant.now(), ZoneId.of("UTC").normalized()));
   }
 
   @PreUpdate
-  private void preUpdate(){
+  private void preUpdate() {
     setUpdatedAt(OffsetDateTime.ofInstant(Instant.now(), ZoneId.of("UTC").normalized()));
   }
 }

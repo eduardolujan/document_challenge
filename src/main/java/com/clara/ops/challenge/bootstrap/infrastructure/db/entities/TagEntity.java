@@ -19,9 +19,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-// Domain
-
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "Tag")
@@ -30,8 +27,7 @@ import lombok.Setter;
 @Setter
 @Builder(toBuilder = true)
 public class TagEntity implements DatabaseEntity {
-  @Id
-  private UUID id;
+  @Id private UUID id;
 
   @Column(name = "name")
   private String name;
@@ -49,14 +45,13 @@ public class TagEntity implements DatabaseEntity {
   @Column(name = "updated_at")
   private OffsetDateTime updatedAt;
 
-
   @PrePersist
-  private void prePersist(){
+  private void prePersist() {
     setCreatedAt(OffsetDateTime.ofInstant(Instant.now(), ZoneId.of("UTC").normalized()));
   }
 
   @PreUpdate
-  private void preUpdate(){
+  private void preUpdate() {
     setUpdatedAt(OffsetDateTime.ofInstant(Instant.now(), ZoneId.of("UTC").normalized()));
   }
 }

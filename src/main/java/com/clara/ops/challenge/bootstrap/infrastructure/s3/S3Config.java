@@ -1,7 +1,5 @@
 package com.clara.ops.challenge.bootstrap.infrastructure.s3;
 
-
-
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.client.builder.AwsClientBuilder;
@@ -14,26 +12,25 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class S3Config {
 
+  @Value("${minio.access-key}")
+  private String accessKey;
 
-    @Value("${minio.access-key}")
-    private String accessKey;
+  @Value("${minio.secret-key}")
+  private String secretAccessKey;
 
-    @Value("${minio.secret-key}")
-    private String secretAccessKey;
+  @Value("${minio.region}")
+  private String region;
 
-    @Value("${minio.region}")
-    private String region;
+  @Value("${minio.endpoint}")
+  private String endpoint;
 
-    @Value("${minio.endpoint}")
-    private String endpoint;
-
-    @Bean
-    AmazonS3 amazonS3Client() {
-        return AmazonS3Client.builder()
-            .withPathStyleAccessEnabled(true)
-            .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(endpoint, region))
-            .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(accessKey, secretAccessKey)))
-            .build();
-    }
-
+  @Bean
+  AmazonS3 amazonS3Client() {
+    return AmazonS3Client.builder()
+        .withPathStyleAccessEnabled(true)
+        .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(endpoint, region))
+        .withCredentials(
+            new AWSStaticCredentialsProvider(new BasicAWSCredentials(accessKey, secretAccessKey)))
+        .build();
+  }
 }

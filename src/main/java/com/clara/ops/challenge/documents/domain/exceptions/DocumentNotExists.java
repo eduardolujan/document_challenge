@@ -5,5 +5,4 @@ public class DocumentNotExists extends Exception {
   public DocumentNotExists(String message) {
     super(message);
   }
-
 }

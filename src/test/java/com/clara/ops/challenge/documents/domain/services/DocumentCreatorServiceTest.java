@@ -6,7 +6,6 @@ import static org.mockito.Mockito.*;
 import com.clara.ops.challenge.documents.domain.entity.Document;
 import com.clara.ops.challenge.documents.domain.exceptions.DocumentParamEmpty;
 import com.clara.ops.challenge.documents.domain.repository.DocumentRepository;
-import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -14,8 +13,7 @@ import org.mockito.MockitoAnnotations;
 
 class DocumentCreatorServiceTest {
 
-  @Mock
-  private DocumentRepository documentRepository;
+  @Mock private DocumentRepository documentRepository;
 
   @BeforeEach
   void setUp() {
@@ -27,7 +25,8 @@ class DocumentCreatorServiceTest {
     String user = "user";
     String documentName = "documentName";
 
-    Document document = DocumentCreatorService.createDocument(documentRepository, user, documentName);
+    Document document =
+        DocumentCreatorService.createDocument(documentRepository, user, documentName);
 
     assertNotNull(document);
     assertEquals(user, document.getUser());
@@ -39,9 +38,11 @@ class DocumentCreatorServiceTest {
   void createDocumentWithNullUserThrowsException() {
     String documentName = "documentName";
 
-    assertThrows(DocumentParamEmpty.class, () -> {
-      DocumentCreatorService.createDocument(documentRepository, null, documentName);
-    });
+    assertThrows(
+        DocumentParamEmpty.class,
+        () -> {
+          DocumentCreatorService.createDocument(documentRepository, null, documentName);
+        });
 
     verify(documentRepository, never()).save(any(Document.class));
   }
@@ -50,9 +51,11 @@ class DocumentCreatorServiceTest {
   void createDocumentWithNullDocumentNameThrowsException() {
     String user = "user";
 
-    assertThrows(DocumentParamEmpty.class, () -> {
-      DocumentCreatorService.createDocument(documentRepository, user, null);
-    });
+    assertThrows(
+        DocumentParamEmpty.class,
+        () -> {
+          DocumentCreatorService.createDocument(documentRepository, user, null);
+        });
 
     verify(documentRepository, never()).save(any(Document.class));
   }
@@ -62,9 +65,11 @@ class DocumentCreatorServiceTest {
     String user = "";
     String documentName = "documentName";
 
-    assertThrows(DocumentParamEmpty.class, () -> {
-      DocumentCreatorService.createDocument(documentRepository, user, documentName);
-    });
+    assertThrows(
+        DocumentParamEmpty.class,
+        () -> {
+          DocumentCreatorService.createDocument(documentRepository, user, documentName);
+        });
 
     verify(documentRepository, never()).save(any(Document.class));
   }
@@ -74,9 +79,11 @@ class DocumentCreatorServiceTest {
     String user = "user";
     String documentName = "";
 
-    assertThrows(DocumentParamEmpty.class, () -> {
-      DocumentCreatorService.createDocument(documentRepository, user, documentName);
-    });
+    assertThrows(
+        DocumentParamEmpty.class,
+        () -> {
+          DocumentCreatorService.createDocument(documentRepository, user, documentName);
+        });
 
     verify(documentRepository, never()).save(any(Document.class));
   }

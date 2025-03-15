@@ -1,6 +1,18 @@
 services:
+  app:
+    hostname: app
+    container_name: app
+    build:
+        context: ..
+        dockerfile: docker/Dockerfile
+    ports:
+        - "8080:8080"
+    networks:
+      - batch_network
+
   postgresql:
-    container_name: postgresql_container
+    container_name: postgresql
+    hostname: postgresql
     image: bitnami/postgresql:15.4.0
     ports:
       - "5432:5432"
@@ -17,7 +29,10 @@ services:
   minio:
     image: minio/minio:latest
     container_name: minio
+    hostname: minio
     restart: always
+    networks:
+      - batch_network
     ports:
       - "9000:9000"  # API S3
       - "9001:9001"  # MinIO Web Console

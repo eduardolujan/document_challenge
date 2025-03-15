@@ -7,7 +7,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication(scanBasePackages = {"com.clara"})
 @EntityScan(basePackages = {"com.clara.ops.challenge.bootstrap.infrastructure.db.entities"})
-@EnableJpaRepositories(basePackages = {"com.clara.ops.challenge.bootstrap.infrastructure.db.repositories"})
+@EnableJpaRepositories(
+    basePackages = {"com.clara.ops.challenge.bootstrap.infrastructure.db.repositories"})
 public class DocumentManagementServiceChallengeApplication {
 
   public static void main(String[] args) {

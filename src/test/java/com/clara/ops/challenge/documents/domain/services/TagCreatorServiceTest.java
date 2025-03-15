@@ -17,19 +17,15 @@ import org.mockito.MockitoAnnotations;
 
 class TagCreatorServiceTest {
 
-  @Mock
-  private TagRepository tagRepository;
+  @Mock private TagRepository tagRepository;
 
   private Document document;
 
   @BeforeEach
   void setUp() {
     MockitoAnnotations.openMocks(this);
-    document = Document.builder()
-        .id(UUID.randomUUID())
-        .user("user")
-        .documentName("documentName")
-        .build();
+    document =
+        Document.builder().id(UUID.randomUUID()).user("user").documentName("documentName").build();
   }
 
   @Test
@@ -59,14 +55,16 @@ class TagCreatorServiceTest {
   void createTagsWithEmptyTagListThrowsException() {
     List<String> tagNames = List.of();
 
-    assertThrows(TagNamesEmpty.class, () -> TagCreatorService.createTags(tagRepository, document, tagNames));
+    assertThrows(
+        TagNamesEmpty.class, () -> TagCreatorService.createTags(tagRepository, document, tagNames));
 
     verify(tagRepository, never()).save(any(Tag.class));
   }
 
   @Test
   void createTagsWithNullTagListThrowsException() {
-    assertThrows(TagNamesEmpty.class, () -> TagCreatorService.createTags(tagRepository, document, null));
+    assertThrows(
+        TagNamesEmpty.class, () -> TagCreatorService.createTags(tagRepository, document, null));
 
     verify(tagRepository, never()).save(any(Tag.class));
   }
