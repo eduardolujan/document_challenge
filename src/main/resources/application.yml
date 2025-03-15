@@ -18,10 +18,9 @@ spring:
   jpa:
     show-sql: true
     database-platform: org.hibernate.dialect.PostgreSQLDialect
-    hibernate:
-      ddl-auto: none
     properties:
-      default_schema: document_schema
+      hibernate:
+        default_schema: document_schema
 
 
 minio:
